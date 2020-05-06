@@ -7,7 +7,6 @@ class Video extends React.Component
         super()
         {
             this.state={
-                text:'',
                 question:[]
             }
         }
@@ -24,37 +23,16 @@ class Video extends React.Component
                 this.setState({question:data});
             })
     }
-
-    handleOnChange=(e)=>
+    handleOnClick=()=>
     {
-        this.setState({[e.target.id]:[e.target.value]})
+        const {handleClick}=this.props;
+        handleClick();
     }
 
-    handleClick=()=>
-    {
-           const{text}=this.state;
-           let {video,id}=this.props;
-
-           video.comment=text;
-
-           fetch(`http://localhost:9000/applications?/${id}`,{
-               method:'PUT',
-               data:video,
-               headers: {
-                'Content-Type': 'application/json'
-               }}).then(response=>response.json())
-               .then(data=>console.log('saving coment',data));
-        //    fs.writeFile("../api.json", JSON.stringify(data), (err) => {
-        //     if (err) {
-        //         console.error(err);
-        //         return;
-        //     };
-        //     console.log("File has been created");
-        // });
-    }
+    
     render()
     {
-        const {video,id}=this.props;
+        const {video,handleOnChange,id}=this.props;
         const {question}=this.state;
     
     
@@ -67,12 +45,12 @@ class Video extends React.Component
                 <h4>Question</h4> 
                   <p>{question[0].question}</p>
         
-                <h4 className='title'>Videos</h4>
+                <h4 >Videos</h4>
                 <video className='video'src={video.src}></video>
-                <h4 className='title'>Comment</h4>
+                <h4 >Comment</h4>
                 <p>{video.comment} 
-                <input  id='text' type='text'placeholder='comment' onChange={this.handleOnChange}/> 
-                <button onClick={this.handleClick}className='btn'>Save</button>
+                <input name={`${id}`} id='text' type='text'placeholder='comment' onChange={handleOnChange}/> 
+                <button onClick={this.handleOnClick}className='btn'>Save</button>
            </p> </div>}
      
            
