@@ -1,6 +1,5 @@
 import React from 'react';
 
-import data from './api.json';
 import Details from './component/details';
 import Candidate from './component/candidate';
 import Header from './component/header';
@@ -12,13 +11,24 @@ class App  extends React.Component
        {
          this.state=
          {
-           candidates:data.candidates,
+           candidates:[],
            showDetails:false,
            single:[]
          }
        }
      }
      
+
+     componentDidMount()
+     {
+       fetch('http://localhost:9000/candidates')
+       .then(response=>response.json())
+       .then(data=>
+        {
+          console.log(data);
+          this.setState({candidates:data});
+        })
+     }
      handleOnClick=(c)=>
      {
           const {candidates}=this.state;
