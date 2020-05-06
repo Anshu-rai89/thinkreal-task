@@ -3,6 +3,7 @@ import React from 'react';
 import data from './api.json';
 import Details from './component/details';
 import Candidate from './component/candidate';
+import Header from './component/header';
 class App  extends React.Component
  {
      constructor()
@@ -35,8 +36,9 @@ class App  extends React.Component
     return (
       <div className="App">
 
-       {showDetails?<Details  candidate={single} handleshowDetails/> 
+       {showDetails?<Details  candidate={single} handleshowDetails={this.handleshowDetails}/> 
        :<div className='candidate'>
+         <Header text='Applicants' handleshowDetails={this.handleshowDetails}/>
        <h3 className='title'>Applicants List </h3>
        <ul>
        {

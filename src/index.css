@@ -41,3 +41,28 @@ input
   font-weight: bold;
   padding: 10px;
 }
+
+.header
+{
+  background-color: grey;
+  height: 60px;
+  width: 100%;
+}
+.title
+{
+  color:white;
+  margin-left:40%;
+  margin-top: 60px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+.close
+{
+  margin-left: 5%;
+  color:white;
+  font-size:20px;
+  border: none;
+  background-color: grey;
+}
